@@ -1,0 +1,3 @@
+const outputs = '';
+
+export {outputs}

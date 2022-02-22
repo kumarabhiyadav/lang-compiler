@@ -1,12 +1,8 @@
 import { useState } from "react";
+import  '../components/input.css'
 
 export default function Input() {
-
-    
-
-
-
-  const selectedLanguage = "python";
+  const selectedLanguage = "c";
   const codeSnippit = {
     python: `def print_hello():
         print("Hello, World")
@@ -21,31 +17,35 @@ print_hello()`,
 int main(){
     printf("Hello, World");
     return 0;
-}
-`,
-    javaScript: `
-console.log("Hello In Js");
-`,
+  }
+  `,
+    javascript: `
+  console.log("Hello In Js");
+  `,
   };
+  let [sourceCode, setSourcecode] = useState(codeSnippit[selectedLanguage]);
+
+  let [output,setOutput] = useState('');
 
   const handelSubmission = async (event: any) => {
     event.preventDefault();
     console.log(`New data ${sourceCode}`);
-  const response:Response = await fetch('http://localhost:3010/python',
-         {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ source_code:sourceCode })
-        },
-    );
-    console.log(response.body);
+    const response: Response = await fetch(`http://localhost:3010/${selectedLanguage}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ source_code: sourceCode }),
+    });
+    let outputResponse=await response.json();
+    console.log(outputResponse);
+    setOutput(outputResponse.data);
+
   };
-  let [sourceCode, setSourcecode] = useState(codeSnippit[selectedLanguage]);
   return (
+    <div style={{display:'flex', }}>
     <div>
       <form onSubmit={handelSubmission} onChange={(e) => e.target}>
-        <div className="col-sm-6">
-          <textarea
+        <div className="col-sm-6 mr-2">
+          {/* <textarea
             name=""
             spellCheck={false}
             id=""
@@ -53,7 +53,17 @@ console.log("Hello In Js");
             rows={20}
             value={sourceCode}
             onChange={(e) => setSourcecode(e.target.value)}
-          ></textarea>
+          ></textarea> */}
+          <div contentEditable={true}
+           
+          
+           className='input-box'
+           defaultValue={sourceCode}
+
+           onChange={(e) => setSourcecode("e")}
+           >
+
+          </div>
         </div>
 
         <div>
@@ -62,6 +72,20 @@ console.log("Hello In Js");
           </button>
         </div>
       </form>
+    </div>
+
+    <div className="col-sm-6">
+          <textarea
+            name=""
+            spellCheck={false}
+            id=""
+            cols={50}
+            rows={20}
+            value={output}
+            readOnly ={true}  
+          
+          ></textarea>
+        </div>
     </div>
   );
 }

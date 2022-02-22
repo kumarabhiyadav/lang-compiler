@@ -4,7 +4,6 @@ import logo from './logo.svg';
 import NavBar from './components/NavBar';
 import Input from './components/Inputs';
 import LangSelection from './components/LangSelection';
-import Output from './components/output';
 
 function App() {
   return (
@@ -18,15 +17,7 @@ function App() {
     <div style={{display:'flex', }}>
       
   <LangSelection />
-  <div className="col-md-3">
-
-      <Input/>
-  </div>
-  <div className="col-md-3">
-
-      <Output/>
-  </div>
-
+  <Input/>
     </div>
        </div>
   );
