@@ -1,38 +1,34 @@
 import { useState } from "react";
 
-export default function Input(){
-   const selectedLanguage  = 'python';
-   const codeSnippit= {
- 'python':"print('Hello World')"
-   };
-   const handelSubmission= (event:any) =>{
-       event.preventDefault();
-       console.log(`New data ${sourceCode}`);
+export default function Input() {
+  const selectedLanguage = "python";
+  const codeSnippit = {
+    python: "print('Hello World')",
+  };
 
-   }
-    const [sourceCode,setSourcecode]  = useState(codeSnippit.python);
-    return (
-    
-      <div >
-  <form onSubmit={handelSubmission}  
-  onChange={(e) => e.target}  
-  >
+  const handelSubmission = (event: any) => {
+    event.preventDefault();
+    console.log(`New data ${sourceCode}`);
+  };
+  let [sourceCode, setSourcecode] = useState(codeSnippit.python);
+  return (
+    <div>
+      <form onSubmit={handelSubmission} onChange={(e) => e.target}>
+        <div className="col-sm-6">
+          <textarea
+            name=""
+            id=""
+            cols={50}
+            rows={10}
+            value={sourceCode}
+            onChange={(e)=>setSourcecode(e.target.value)}
+          ></textarea>
+        </div>
 
-          <div className="col-sm-6"> 
-
-      <textarea name="" id="" cols={30} rows={10}
-      value={sourceCode}
-      
-      ></textarea>
-          </div>
-
-          <div>
-              <div className="btn btn-primary">Compile</div>
-          </div>
+        <div>
+          <div className="btn btn-primary">Compile</div>
+        </div>
       </form>
-
-      </div>
-
-    
-    );
-} 
+    </div>
+  );
+}
