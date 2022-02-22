@@ -26,7 +26,7 @@ export default function Input() {
         </div>
 
         <div>
-          <div className="btn btn-primary">Compile</div>
+          <div className="btn btn-primary" onSubmit={handelSubmission}>Compile</div>
         </div>
       </form>
     </div>
