@@ -18,8 +18,14 @@ function App() {
     <div style={{display:'flex', }}>
       
   <LangSelection />
+  <div className="col-md-3">
+
       <Input/>
+  </div>
+  <div className="col-md-3">
+
       <Output/>
+  </div>
 
     </div>
        </div>
