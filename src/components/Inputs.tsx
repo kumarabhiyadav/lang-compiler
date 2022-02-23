@@ -2,8 +2,8 @@ import { useState } from "react";
 import  '../components/input.css'
 
 export default function Input() {
-  const selectedLanguage = "c";
-  const codeSnippit = {
+  const selectedLanguage:string= "c";
+  const codeSnippit:any = {
     python: `def print_hello():
         print("Hello, World")
 print_hello()`,
@@ -13,7 +13,7 @@ print_hello()`,
             System.out.println("Hello, Java")
         }
     }`,
-    c: `#include<stdio.h>
+    c: `#include<stdio.h> 
 int main(){
     printf("Hello, World");
     return 0;
@@ -55,14 +55,12 @@ int main(){
             onChange={(e) => setSourcecode(e.target.value)}
           ></textarea> */}
           <div contentEditable={true}
-           
-          
+           translate='no'
            className='input-box'
            defaultValue={sourceCode}
-
            onChange={(e) => setSourcecode("e")}
            >
-
+{sourceCode}
           </div>
         </div>
 
